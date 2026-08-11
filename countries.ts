@@ -1,0 +1,23 @@
+// Common shipping destinations first, then a broad list.
+export const countries: string[] = [
+  'India',
+  'United States',
+  'United Kingdom',
+  'Canada',
+  'Australia',
+  'United Arab Emirates',
+  'Singapore',
+  'Nepal',
+  'Bangladesh',
+  'Sri Lanka',
+  'Bhutan',
+  'Pakistan',
+  'Malaysia',
+  'Germany',
+  'France',
+  'Netherlands',
+  'New Zealand',
+  'Qatar',
+  'Saudi Arabia',
+  'South Africa',
+]
