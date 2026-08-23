@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Fraunces } from 'next/font/google'
 import { StoreProvider } from '@/components/store-provider'
+import { AuthGate } from '@/components/auth-gate'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
@@ -36,7 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable} ${fraunces.variable} bg-background`}>
       <body className="font-sans antialiased">
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <AuthGate>{children}</AuthGate>
+        </StoreProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
