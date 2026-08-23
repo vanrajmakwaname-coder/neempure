@@ -1,13 +1,17 @@
 import { getApp, getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
+// Firebase Web configuration is intended to be included in client-side apps.
+// Security is enforced by Firebase Authentication/Firestore rules, not by hiding
+// these web-app identifiers.
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyAsZx8nnarMC9NLUQ5BHVwZsGfOPMgt2g',
+  authDomain: 'neempure.firebaseapp.com',
+  projectId: 'neempure',
+  storageBucket: 'neempure.firebasestorage.app',
+  messagingSenderId: '1053122682059',
+  appId: '1:1053122682059:web:6746a52c6b40f57db70f4e',
+  measurementId: 'G-N2QJH9QDCE0',
 }
 
 const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig)
