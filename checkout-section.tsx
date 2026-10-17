@@ -9,7 +9,7 @@ import { UpiPayment } from '@/components/upi-payment'
 const emptyForm = {
   name: '',
   phone: '',
-  country: 'India',
+  country: '',
   pincode: '',
   house: '',
   street: '',
@@ -54,8 +54,8 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
       setError('Enter a valid 10-digit mobile number.')
       return
     }
-    if (!/^[1-9][0-9]{5}$/.test(form.pincode.trim())) {
-      setError('Enter a valid 6-digit Indian PIN code.')
+    if (!/^[0-9A-Za-z -]{4,10}$/.test(form.pincode.trim())) {
+      setError('Enter a valid PIN / postal code.')
       return
     }
     if (cartTotal <= 0) {
@@ -94,7 +94,7 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
             Checkout &amp; Payment
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Enter your Indian delivery address, then pay in INR using UPI.
+            Enter your delivery details, then pay securely with UPI.
           </p>
         </div>
 
@@ -118,18 +118,12 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
                 <input
                   className={inputCls}
                   inputMode="numeric"
-                  maxLength={10}
                   placeholder="10-digit mobile number"
                   value={form.phone}
                   disabled={!!order}
                   onChange={(e) => set('phone')(e.target.value)}
                 />
               </Field>
-            </div>
-
-            <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-foreground">
-              <p className="font-bold">Delivery across India only</p>
-              <p className="mt-1 text-muted-foreground">Use a valid 6-digit Indian PIN code. Payment is accepted in Indian rupees (INR).</p>
             </div>
 
             <h3 className="mt-6 text-lg font-bold text-foreground">
@@ -144,15 +138,18 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
                   disabled={!!order}
                   onChange={(e) => set('country')(e.target.value)}
                 >
-                  <option value="India">India</option>
+                  <option value="">Select country</option>
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
                 </select>
               </Field>
               <Field label="PIN / Postal Code">
                 <input
                   className={inputCls}
-                  inputMode="numeric"
-                  maxLength={6}
-                  placeholder="6-digit PIN code"
+                  placeholder="e.g. 380001"
                   value={form.pincode}
                   disabled={!!order}
                   onChange={(e) => set('pincode')(e.target.value)}
