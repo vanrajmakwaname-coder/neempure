@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { X } from 'lucide-react'
-import { countries } from '@/lib/countries'
 import { DELIVERY_CHARGE, useStore, type Address, type Order } from '@/components/store-provider'
 import { UpiPayment } from '@/components/upi-payment'
 
