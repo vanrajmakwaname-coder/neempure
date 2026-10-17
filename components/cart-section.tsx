@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { Minus, Plus, Trash2, ShoppingBag, CreditCard } from 'lucide-react'
-import { useStore } from '@/components/store-provider'
+import { DELIVERY_CHARGE, useStore } from '@/components/store-provider'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -109,12 +109,12 @@ export function CartSection({ onCheckout }: { onCheckout: () => void }) {
               </div>
               <div className="mt-2 flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Delivery</span>
-                <span className="font-bold text-primary">FREE</span>
+                <span className="font-bold text-foreground">₹{DELIVERY_CHARGE}</span>
               </div>
               <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
                 <span className="text-lg font-bold text-foreground">Total</span>
                 <span className="font-serif text-2xl font-semibold text-foreground">
-                  ₹{cartTotal}
+                  ₹{cartTotal + DELIVERY_CHARGE}
                 </span>
               </div>
               <button
