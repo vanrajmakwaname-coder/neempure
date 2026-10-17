@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { countries } from '@/lib/countries'
-import { useStore, type Address, type Order } from '@/components/store-provider'
+import { DELIVERY_CHARGE, useStore, type Address, type Order } from '@/components/store-provider'
 import { UpiPayment } from '@/components/upi-payment'
 
 const emptyForm = {
@@ -129,7 +129,7 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
 
             <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-foreground">
               <p className="font-bold">Delivery across India only</p>
-              <p className="mt-1 text-muted-foreground">Use a valid 6-digit Indian PIN code. Payment is accepted in Indian rupees (INR).</p>
+              <p className="mt-1 text-muted-foreground">Use a valid 6-digit Indian PIN code. A fixed ₹30 delivery charge applies to each order. Payment is accepted in INR.</p>
             </div>
 
             <h3 className="mt-6 text-lg font-bold text-foreground">
@@ -251,7 +251,7 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
                   onClick={confirm}
                   className="mt-5 w-full rounded-xl bg-primary py-3.5 font-bold text-primary-foreground transition-transform hover:scale-[1.01]"
                 >
-                  Confirm Order &amp; Open UPI · ₹{cartTotal}
+                  Confirm Order &amp; Open UPI · ₹{cartTotal + DELIVERY_CHARGE}
                 </button>
                 <button
                   onClick={onCancel}
@@ -281,7 +281,11 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
                 confirm your order.
               </p>
               <div className="mt-5 rounded-2xl border border-dashed border-border bg-secondary/50 py-12 text-sm font-semibold text-muted-foreground">
-                Amount due: ₹{cart.length ? cartTotal : 0}
+                Subtotal: ₹{cart.length ? cartTotal : 0}
+                <br />
+                Delivery: ₹{cart.length ? DELIVERY_CHARGE : 0}
+                <br />
+                Total due: ₹{cart.length ? cartTotal + DELIVERY_CHARGE : 0}
               </div>
             </div>
           )}
