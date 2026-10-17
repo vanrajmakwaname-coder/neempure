@@ -94,7 +94,7 @@ export function CheckoutSection({ onCancel }: { onCancel: () => void }) {
             Checkout &amp; Payment
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Enter your delivery details, then pay securely with UPI.
+            Enter your Indian delivery address, then pay in INR using UPI.
           </p>
         </div>
 
