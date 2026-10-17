@@ -13,6 +13,7 @@ import {
 
 export const UPI_ID = '9016936893@fam'
 export const PAYEE_NAME = 'NeemPure'
+export const DELIVERY_CHARGE = 30
 
 const CART_KEY = 'neempure_cart_v3'
 const ORDERS_KEY = 'neempure_orders_v3'
@@ -182,7 +183,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const placeOrder = useCallback(
     (details: { name: string; phone: string; address: Address }) => {
-      const total = cart.reduce((a, x) => a + x.price * x.qty, 0)
+      const subtotal = cart.reduce((a, x) => a + x.price * x.qty, 0)
+      const total = subtotal + DELIVERY_CHARGE
       const order: Order = {
         id: 'NP-' + Date.now().toString().slice(-8),
         date: new Date().toLocaleString(),
